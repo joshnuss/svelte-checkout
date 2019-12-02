@@ -67,7 +67,10 @@
 
   {#if !user}
   <Section title="Contact Information">
-    <InputField name="email" label="Email" type="email" bind:value={checkout.email} disabled={isSubmitting}/>
+    <label>
+      Email<br/>
+      <input bind:value={checkout.email} name="email" type="email" disabled={isSubmitting}/>
+    </label>
 
     <label>
       <input bind:checked={checkout.newsletter} name="newsletter" type="checkbox" disabled={isSubmitting}/>
@@ -77,7 +80,7 @@
   {/if}
 
   <Section title="Shipping Address">
-    {#if user && user.addresses.length > 0}
+    {#if user.addresses.length > 0}
       {#each user.addresses as address}
         <label>
           <input type=radio value={address.id} bind:group={checkout.shippingAddressId}/> {address.street}<br/> {address.municipality}, {address.region}<br/> {address.country}, {address.postalCode}
