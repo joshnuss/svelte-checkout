@@ -4,6 +4,7 @@
   import {EmailField, CheckboxField} from '@/Components/Fields'
   import ShippingRateSelector from '@/Components/ShippingRateSelector'
   import AddressEntry from '@/Components/AddressEntry'
+  import AddressSelector from '@/Components/AddressSelector'
 
   const user = {
     addresses: [
@@ -75,14 +76,7 @@
 
   <Section title="Shipping Address">
     {#if user && user.addresses.length > 0}
-      {#each user.addresses as address}
-        <label>
-          <input type=radio value={address.id} bind:group={checkout.shippingAddressId}/> {address.street}<br/> {address.municipality}, {address.region}<br/> {address.country}, {address.postalCode}
-        </label>
-      {/each}
-      <label>
-        <input type=radio value={null} bind:group={checkout.shippingAddressId}/> Different shipping address
-      </label>
+      <AddressSelector addresses={user.addresses} bind:addressId={checkout.shippingAddressId} newLabel="Different shipping address"/>
     {/if}
 
     {#if !checkout.shippingAddressId}
