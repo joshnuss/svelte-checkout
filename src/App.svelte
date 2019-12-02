@@ -34,7 +34,7 @@
   ]
 
   let isSubmitting = false
-  let fields = {
+  let checkout = {
     email: "",
     newsletter: false,
     shippingRateId: shippingRates[0].id,
@@ -50,12 +50,12 @@
     }
   }
 
-  $: shippingCountry = countries.find(country => country.code === fields.shippingAddress.country)
+  $: shippingCountry = countries.find(country => country.code === checkout.shippingAddress.country)
 
   function handleSubmit() {
     isSubmitting = true
 
-    console.log(fields)
+    console.log(checkout)
 
     setTimeout(() => isSubmitting = false, 3000)
   }
@@ -68,11 +68,11 @@
   <Section title="Contact Information">
     <label>
       Email<br/>
-      <input bind:value={fields.email} name="email" type="email" disabled={isSubmitting}/>
+      <input bind:value={checkout.email} name="email" type="email" disabled={isSubmitting}/>
     </label>
 
     <label>
-      <input bind:checked={fields.newsletter} name="newsletter" type="checkbox" disabled={isSubmitting}/>
+      <input bind:checked={checkout.newsletter} name="newsletter" type="checkbox" disabled={isSubmitting}/>
       Send me emails about new deals
     </label>
   </Section>
@@ -82,29 +82,29 @@
     {#if user.addresses.length > 0}
       {#each user.addresses as address}
         <label>
-          <input type=radio value={address.id} bind:group={fields.shippingAddressId}/> {address.street}<br/> {address.municipality}, {address.region}<br/> {address.country}, {address.postalCode}
+          <input type=radio value={address.id} bind:group={checkout.shippingAddressId}/> {address.street}<br/> {address.municipality}, {address.region}<br/> {address.country}, {address.postalCode}
         </label>
       {/each}
       <label>
-        <input type=radio value={null} bind:group={fields.shippingAddressId}/> Different shipping address
+        <input type=radio value={null} bind:group={checkout.shippingAddressId}/> Different shipping address
       </label>
     {/if}
 
-    {#if !fields.shippingAddressId}
+    {#if !checkout.shippingAddressId}
     <label for="firstName">First</label>
-    <input bind:value={fields.shippingAddress.firstName} name="firstName" autocapitalize disabled={isSubmitting}/>
+    <input bind:value={checkout.shippingAddress.firstName} name="firstName" autocapitalize disabled={isSubmitting}/>
 
     <label for="lastName">Last</label>
-    <input bind:value={fields.shippingAddress.lastName} name="lastName" autocapitalize disabled={isSubmitting}/>
+    <input bind:value={checkout.shippingAddress.lastName} name="lastName" autocapitalize disabled={isSubmitting}/>
 
     <label for="street">Address</label>
-    <input bind:value={fields.shippingAddress.street} name="street" disabled={isSubmitting}/>
+    <input bind:value={checkout.shippingAddress.street} name="street" disabled={isSubmitting}/>
 
     <label for="city">{shippingCountry.municipality}</label>
-    <input bind:value={fields.shippingAddress.municipality} name="city" disabled={isSubmitting}/>
+    <input bind:value={checkout.shippingAddress.municipality} name="city" disabled={isSubmitting}/>
 
     <label for="region">{shippingCountry.region}</label>
-    <select bind:value={fields.shippingAddress.region} name="region" disabled={isSubmitting}>
+    <select bind:value={checkout.shippingAddress.region} name="region" disabled={isSubmitting}>
       <option>--- Choose ---</option>
       {#each shippingCountry.regions as region}
         <option value={region.code}>{region.name}</option>
@@ -112,14 +112,14 @@
     </select>
 
     <label for="country">Country</label>
-    <select bind:value={fields.shippingAddress.country} name="country" disabled={isSubmitting}>
+    <select bind:value={checkout.shippingAddress.country} name="country" disabled={isSubmitting}>
       {#each countries as country}
         <option value={country.code}>{country.name}</option>
       {/each}
     </select>
 
     <label for="zip">{shippingCountry.postalCode.label}</label>
-    <MaskedInput bind:value={fields.shippingAddress.postalCode} name="zip" format={shippingCountry.postalCode.format} disabled={isSubmitting}/>
+    <MaskedInput bind:value={checkout.shippingAddress.postalCode} name="zip" format={shippingCountry.postalCode.format} disabled={isSubmitting}/>
 
     {/if}
   </Section>
@@ -129,7 +129,7 @@
     <div>
       <h3>
         <label>
-          <input type=radio name="shippingRate" value={rate.id} bind:group={fields.shippingRateId}/>
+          <input type=radio name="shippingRate" value={rate.id} bind:group={checkout.shippingRateId}/>
           {rate.carrier} {rate.method} ${rate.amount}
         </label>
       </h3>
@@ -144,5 +144,5 @@
 </form>
 
 <pre>
-  {JSON.stringify(fields, null, 2)}
+  {JSON.stringify(checkout, null, 2)}
 </pre>
