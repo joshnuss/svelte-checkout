@@ -4,6 +4,7 @@
   import MaskedInput from '@/Components/MaskedInput'
   import TextField from '@/Components/TextField'
   import EmailField from '@/Components/EmailField'
+  import CheckboxField from '@/Components/CheckboxField'
 
   const user = {
     addresses: [
@@ -70,10 +71,7 @@
   <Section title="Contact Information">
     <EmailField name="email" label="Email" bind:value={checkout.email} disabled={isSubmitting}/>
 
-    <label>
-      <input bind:checked={checkout.newsletter} name="newsletter" type="checkbox" disabled={isSubmitting}/>
-      Send me emails about new deals
-    </label>
+    <CheckboxField label="Send me emails about new deals" bind:checked={checkout.newsletter} name="newsletter" disabled={isSubmitting}/>
   </Section>
   {/if}
 
