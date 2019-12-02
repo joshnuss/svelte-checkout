@@ -80,7 +80,7 @@
   {/if}
 
   <Section title="Shipping Address">
-    {#if user.addresses.length > 0}
+    {#if user && user.addresses.length > 0}
       {#each user.addresses as address}
         <label>
           <input type=radio value={address.id} bind:group={checkout.shippingAddressId}/> {address.street}<br/> {address.municipality}, {address.region}<br/> {address.country}, {address.postalCode}
