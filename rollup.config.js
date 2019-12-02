@@ -1,4 +1,6 @@
+import path from 'path';
 import svelte from 'rollup-plugin-svelte';
+import alias from 'rollup-plugin-alias';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
@@ -15,6 +17,12 @@ export default {
     file: 'public/build/bundle.js'
   },
   plugins: [
+    alias({
+      resolve: ['.js', '.svelte'],
+      entries: [
+        {find: '@', replacement: path.join(__dirname, 'src')}
+      ]
+    }),
     svelte({
       // enable run-time checks when not in production
       dev: !production,

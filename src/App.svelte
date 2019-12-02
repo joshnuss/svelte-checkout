@@ -1,7 +1,7 @@
 <script>
-  import {countries, findCountry} from './Api/Geo'
-  import Section from './Components/Section'
-  import MaskedInput from './Components/MaskedInput'
+  import {countries, findCountry} from '@/Api/Geo'
+  import Section from '@/Components/Section'
+  import MaskedInput from '@/Components/MaskedInput'
 
   const user = {
     addresses: [
