@@ -59,6 +59,7 @@
   $: regionOptions = [["", "--Choose--"]].concat(shippingCountry.regions.map(region => ([region.code, region.name])))
   $: countryOptions = countries.map(country => ([country.code, country.name]))
   $: disabled = isSubmitting
+  $: shippingAddress = checkout.shippingAddress
 
   function handleSubmit() {
     isSubmitting = true
@@ -75,7 +76,6 @@
   {#if !user}
   <Section title="Contact Information">
     <EmailField name="email" label="Email" bind:value={checkout.email} {disabled}/>
-
     <CheckboxField name="newsletter" label="Send me marketing emails" bind:checked={checkout.newsletter} {disabled}/>
   </Section>
   {/if}
@@ -93,13 +93,13 @@
     {/if}
 
     {#if !checkout.shippingAddressId}
-      <TextField name="firstName" label="First" bind:value={checkout.shippingAddress.firstName} autocapitalize {disabled}/>
-      <TextField name="lastName" label="Last" bind:value={checkout.shippingAddress.lastName} autocapitalize {disabled}/>
-      <TextField name="street" label="Address" bind:value={checkout.shippingAddress.street} {disabled}/>
-      <TextField name="city" label={shippingCountry.municipality} bind:value={checkout.shippingAddress.municipality} {disabled}/>
-      <SelectField name="region" label={shippingCountry.region} bind:value={checkout.shippingAddress.region} options={regionOptions} {disabled}/>
-      <SelectField name="country" label="Country" bind:value={checkout.shippingAddress.country} options={countryOptions} {disabled}/>
-      <MaskedField bind:value={checkout.shippingAddress.postalCode} name="zip" label={shippingCountry.postalCode.label} format={shippingCountry.postalCode.format} {disabled}/>
+      <TextField name="firstName" label="First" bind:value={shippingAddress.firstName} autocapitalize {disabled}/>
+      <TextField name="lastName" label="Last" bind:value={shippingAddress.lastName} autocapitalize {disabled}/>
+      <TextField name="street" label="Address" bind:value={shippingAddress.street} {disabled}/>
+      <TextField name="city" label={shippingCountry.municipality} bind:value={shippingAddress.municipality} {disabled}/>
+      <SelectField name="region" label={shippingCountry.region} bind:value={shippingAddress.region} options={regionOptions} {disabled}/>
+      <SelectField name="country" label="Country" bind:value={shippingAddress.country} options={countryOptions} {disabled}/>
+      <MaskedField bind:value={shippingAddress.postalCode} name="zip" label={shippingCountry.postalCode.label} format={shippingCountry.postalCode.format} {disabled}/>
     {/if}
   </Section>
 
