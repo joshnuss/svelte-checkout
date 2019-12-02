@@ -4,7 +4,7 @@
   function handleKeydown(e) {
     const value = e.target.value
 
-    if (e.key.length > 1) {
+    if (!e.key || e.key.length > 1) {
       return
     }
 
