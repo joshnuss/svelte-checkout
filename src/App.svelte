@@ -1,12 +1,9 @@
 <script>
   import {countries, findCountry} from '@/Api/Geo'
   import Section from '@/Components/Section'
-  import TextField from '@/Components/TextField'
-  import EmailField from '@/Components/EmailField'
-  import CheckboxField from '@/Components/CheckboxField'
-  import MaskedField from '@/Components/MaskedField'
-  import SelectField from '@/Components/SelectField'
+  import {EmailField, CheckboxField} from '@/Components/Fields'
   import ShippingRateSelector from '@/Components/ShippingRateSelector'
+  import AddressEntry from '@/Components/AddressEntry'
 
   const user = {
     addresses: [
@@ -55,11 +52,7 @@
     }
   }
 
-  $: shippingCountry = findCountry(checkout.shippingAddress.country)
-  $: regionOptions = [["", "--Choose--"]].concat(shippingCountry.regions.map(region => ([region.code, region.name])))
-  $: countryOptions = countries.map(country => ([country.code, country.name]))
   $: disabled = isSubmitting
-  $: shippingAddress = checkout.shippingAddress
 
   function handleSubmit() {
     isSubmitting = true
@@ -93,13 +86,7 @@
     {/if}
 
     {#if !checkout.shippingAddressId}
-      <TextField name="firstName" label="First" bind:value={shippingAddress.firstName} autocapitalize {disabled}/>
-      <TextField name="lastName" label="Last" bind:value={shippingAddress.lastName} autocapitalize {disabled}/>
-      <TextField name="street" label="Address" bind:value={shippingAddress.street} {disabled}/>
-      <TextField name="city" label={shippingCountry.municipality} bind:value={shippingAddress.municipality} {disabled}/>
-      <SelectField name="region" label={shippingCountry.region} bind:value={shippingAddress.region} options={regionOptions} {disabled}/>
-      <SelectField name="country" label="Country" bind:value={shippingAddress.country} options={countryOptions} {disabled}/>
-      <MaskedField bind:value={shippingAddress.postalCode} name="zip" label={shippingCountry.postalCode.label} format={shippingCountry.postalCode.format} {disabled}/>
+      <AddressEntry bind:address={checkout.shippingAddress} {disabled}/>
     {/if}
   </Section>
 
