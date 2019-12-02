@@ -3,6 +3,7 @@
   import Section from '@/Components/Section'
   import MaskedInput from '@/Components/MaskedInput'
   import TextField from '@/Components/TextField'
+  import EmailField from '@/Components/EmailField'
 
   const user = {
     addresses: [
@@ -67,10 +68,7 @@
 
   {#if !user}
   <Section title="Contact Information">
-    <label>
-      Email<br/>
-      <input bind:value={checkout.email} name="email" type="email" disabled={isSubmitting}/>
-    </label>
+    <EmailField name="email" label="Email" bind:value={checkout.email} disabled={isSubmitting}/>
 
     <label>
       <input bind:checked={checkout.newsletter} name="newsletter" type="checkbox" disabled={isSubmitting}/>
