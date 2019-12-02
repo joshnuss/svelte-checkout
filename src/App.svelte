@@ -5,6 +5,7 @@
   import EmailField from '@/Components/EmailField'
   import CheckboxField from '@/Components/CheckboxField'
   import MaskedField from '@/Components/MaskedField'
+  import SelectField from '@/Components/SelectField'
 
   const user = {
     addresses: [
@@ -54,6 +55,8 @@
   }
 
   $: shippingCountry = findCountry(checkout.shippingAddress.country)
+  $: regionOptions = [["", "--Choose--"]].concat(shippingCountry.regions.map(region => ([region.code, region.name])))
+  $: countryOptions = countries.map(country => ([country.code, country.name]))
 
   function handleSubmit() {
     isSubmitting = true
@@ -71,7 +74,7 @@
   <Section title="Contact Information">
     <EmailField name="email" label="Email" bind:value={checkout.email} disabled={isSubmitting}/>
 
-    <CheckboxField label="Send me emails about new deals" bind:checked={checkout.newsletter} name="newsletter" disabled={isSubmitting}/>
+    <CheckboxField name="newsletter" label="Send me marketing emails" bind:checked={checkout.newsletter} disabled={isSubmitting}/>
   </Section>
   {/if}
 
@@ -88,29 +91,13 @@
     {/if}
 
     {#if !checkout.shippingAddressId}
-
-    <TextField name="firstName" label="First" bind:value={checkout.shippingAddress.firstName} autocapitalize disabled={isSubmitting}/>
-    <TextField name="lastName" label="Last" bind:value={checkout.shippingAddress.lastName} autocapitalize disabled={isSubmitting}/>
-    <TextField name="street" label="Address" bind:value={checkout.shippingAddress.street} disabled={isSubmitting}/>
-    <TextField name="city" label={shippingCountry.municipality} bind:value={checkout.shippingAddress.municipality} disabled={isSubmitting}/>
-
-    <label for="region">{shippingCountry.region}</label>
-    <select bind:value={checkout.shippingAddress.region} name="region" disabled={isSubmitting}>
-      <option>--- Choose ---</option>
-      {#each shippingCountry.regions as region}
-        <option value={region.code}>{region.name}</option>
-      {/each}
-    </select>
-
-    <label for="country">Country</label>
-    <select bind:value={checkout.shippingAddress.country} name="country" disabled={isSubmitting}>
-      {#each countries as country}
-        <option value={country.code}>{country.name}</option>
-      {/each}
-    </select>
-
-    <MaskedField bind:value={checkout.shippingAddress.postalCode} name="zip" label={shippingCountry.postalCode.label} format={shippingCountry.postalCode.format} disabled={isSubmitting} />
-
+      <TextField name="firstName" label="First" bind:value={checkout.shippingAddress.firstName} autocapitalize disabled={isSubmitting}/>
+      <TextField name="lastName" label="Last" bind:value={checkout.shippingAddress.lastName} autocapitalize disabled={isSubmitting}/>
+      <TextField name="street" label="Address" bind:value={checkout.shippingAddress.street} disabled={isSubmitting}/>
+      <TextField name="city" label={shippingCountry.municipality} bind:value={checkout.shippingAddress.municipality} disabled={isSubmitting}/>
+      <SelectField name="region" label={shippingCountry.region} bind:value={checkout.shippingAddress.region} options={regionOptions} disabled={isSubmitting}/>
+      <SelectField name="country" label="Country" bind:value={checkout.shippingAddress.country} options={countryOptions} disabled={isSubmitting}/>
+      <MaskedField bind:value={checkout.shippingAddress.postalCode} name="zip" label={shippingCountry.postalCode.label} format={shippingCountry.postalCode.format} disabled={isSubmitting} />
     {/if}
   </Section>
 
