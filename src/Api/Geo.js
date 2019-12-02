@@ -304,3 +304,7 @@ export const countries = [
     ]
   }
 ]
+
+export function findCountry(code) {
+  return countries.find(country => country.code === code)
+}

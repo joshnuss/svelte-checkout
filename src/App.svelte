@@ -1,5 +1,5 @@
 <script>
-  import {countries} from './Api/Geo'
+  import {countries, findCountry} from './Api/Geo'
   import Section from './Components/Section'
   import MaskedInput from './Components/MaskedInput'
 
@@ -50,7 +50,7 @@
     }
   }
 
-  $: shippingCountry = countries.find(country => country.code === checkout.shippingAddress.country)
+  $: shippingCountry = findCountry(checkout.shippingAddress.country)
 
   function handleSubmit() {
     isSubmitting = true
