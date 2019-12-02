@@ -38,8 +38,10 @@
 
   let isSubmitting = false
   let checkout = {
-    email: "",
-    newsletter: false,
+    user: {
+      email: "",
+      newsletter: false,
+    },
     shippingRateId: shippingRates[0].id,
     shippingAddressId: user ? user.addresses[0].id : null,
     shippingAddress: {
@@ -69,8 +71,8 @@
 
   {#if !user}
   <Section title="Contact Information">
-    <EmailField name="email" label="Email" bind:value={checkout.email} {disabled}/>
-    <CheckboxField name="newsletter" label="Send me marketing emails" bind:checked={checkout.newsletter} {disabled}/>
+    <EmailField name="email" label="Email" bind:value={checkout.user.email} {disabled}/>
+    <CheckboxField name="newsletter" label="Send me marketing emails" bind:checked={checkout.user.newsletter} {disabled}/>
   </Section>
   {/if}
 
