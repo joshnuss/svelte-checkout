@@ -2,7 +2,7 @@
   import {countries, findCountry} from '@/Api/Geo'
   import Section from '@/Components/Section'
   import MaskedInput from '@/Components/MaskedInput'
-  import TextField from '@/Components/TextField'
+  import InputField from '@/Components/InputField'
 
   const user = {
     addresses: [
@@ -67,7 +67,7 @@
 
   {#if !user}
   <Section title="Contact Information">
-    <TextField name="email" label="Email" type="email" bind:value={checkout.email} disabled={isSubmitting}/>
+    <InputField name="email" label="Email" type="email" bind:value={checkout.email} disabled={isSubmitting}/>
 
     <label>
       <input bind:checked={checkout.newsletter} name="newsletter" type="checkbox" disabled={isSubmitting}/>
@@ -90,10 +90,10 @@
 
     {#if !checkout.shippingAddressId}
 
-    <TextField name="firstName" label="First" bind:value={checkout.shippingAddress.firstName} autocapitalize disabled={isSubmitting}/>
-    <TextField name="lastName" label="Last" bind:value={checkout.shippingAddress.lastName} autocapitalize disabled={isSubmitting}/>
-    <TextField name="street" label="Address" bind:value={checkout.shippingAddress.street} disabled={isSubmitting}/>
-    <TextField name="city" label={shippingCountry.municipality} bind:value={checkout.shippingAddress.municipality} disabled={isSubmitting}/>
+    <InputField name="firstName" label="First" bind:value={checkout.shippingAddress.firstName} autocapitalize disabled={isSubmitting}/>
+    <InputField name="lastName" label="Last" bind:value={checkout.shippingAddress.lastName} autocapitalize disabled={isSubmitting}/>
+    <InputField name="street" label="Address" bind:value={checkout.shippingAddress.street} disabled={isSubmitting}/>
+    <InputField name="city" label={shippingCountry.municipality} bind:value={checkout.shippingAddress.municipality} disabled={isSubmitting}/>
 
     <label for="region">{shippingCountry.region}</label>
     <select bind:value={checkout.shippingAddress.region} name="region" disabled={isSubmitting}>
