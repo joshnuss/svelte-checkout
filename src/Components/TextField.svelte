@@ -1,8 +1,9 @@
 <script>
+  import Field from './Field'
+
   export let name, label, value, autocapitalize = false, disabled = false
 </script>
 
-<label>
-  {label}<br/>
+<Field {label}>
   <input bind:value={value} {name} {disabled} {autocapitalize}/>
-</label>
+</Field>
