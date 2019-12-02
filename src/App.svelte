@@ -1,10 +1,10 @@
 <script>
   import {countries, findCountry} from '@/Api/Geo'
   import Section from '@/Components/Section'
-  import MaskedInput from '@/Components/MaskedInput'
   import TextField from '@/Components/TextField'
   import EmailField from '@/Components/EmailField'
   import CheckboxField from '@/Components/CheckboxField'
+  import MaskedField from '@/Components/MaskedField'
 
   const user = {
     addresses: [
@@ -109,8 +109,7 @@
       {/each}
     </select>
 
-    <label for="zip">{shippingCountry.postalCode.label}</label>
-    <MaskedInput bind:value={checkout.shippingAddress.postalCode} name="zip" format={shippingCountry.postalCode.format} disabled={isSubmitting}/>
+    <MaskedField bind:value={checkout.shippingAddress.postalCode} name="zip" label={shippingCountry.postalCode.label} format={shippingCountry.postalCode.format} disabled={isSubmitting} />
 
     {/if}
   </Section>
