@@ -6,6 +6,7 @@
   import CheckboxField from '@/Components/CheckboxField'
   import MaskedField from '@/Components/MaskedField'
   import SelectField from '@/Components/SelectField'
+  import ShippingRateSelector from '@/Components/ShippingRateSelector'
 
   const user = {
     addresses: [
@@ -57,6 +58,7 @@
   $: shippingCountry = findCountry(checkout.shippingAddress.country)
   $: regionOptions = [["", "--Choose--"]].concat(shippingCountry.regions.map(region => ([region.code, region.name])))
   $: countryOptions = countries.map(country => ([country.code, country.name]))
+  $: disabled = isSubmitting
 
   function handleSubmit() {
     isSubmitting = true
@@ -72,9 +74,9 @@
 
   {#if !user}
   <Section title="Contact Information">
-    <EmailField name="email" label="Email" bind:value={checkout.email} disabled={isSubmitting}/>
+    <EmailField name="email" label="Email" bind:value={checkout.email} {disabled}/>
 
-    <CheckboxField name="newsletter" label="Send me marketing emails" bind:checked={checkout.newsletter} disabled={isSubmitting}/>
+    <CheckboxField name="newsletter" label="Send me marketing emails" bind:checked={checkout.newsletter} {disabled}/>
   </Section>
   {/if}
 
@@ -91,31 +93,21 @@
     {/if}
 
     {#if !checkout.shippingAddressId}
-      <TextField name="firstName" label="First" bind:value={checkout.shippingAddress.firstName} autocapitalize disabled={isSubmitting}/>
-      <TextField name="lastName" label="Last" bind:value={checkout.shippingAddress.lastName} autocapitalize disabled={isSubmitting}/>
-      <TextField name="street" label="Address" bind:value={checkout.shippingAddress.street} disabled={isSubmitting}/>
-      <TextField name="city" label={shippingCountry.municipality} bind:value={checkout.shippingAddress.municipality} disabled={isSubmitting}/>
-      <SelectField name="region" label={shippingCountry.region} bind:value={checkout.shippingAddress.region} options={regionOptions} disabled={isSubmitting}/>
-      <SelectField name="country" label="Country" bind:value={checkout.shippingAddress.country} options={countryOptions} disabled={isSubmitting}/>
-      <MaskedField bind:value={checkout.shippingAddress.postalCode} name="zip" label={shippingCountry.postalCode.label} format={shippingCountry.postalCode.format} disabled={isSubmitting} />
+      <TextField name="firstName" label="First" bind:value={checkout.shippingAddress.firstName} autocapitalize {disabled}/>
+      <TextField name="lastName" label="Last" bind:value={checkout.shippingAddress.lastName} autocapitalize {disabled}/>
+      <TextField name="street" label="Address" bind:value={checkout.shippingAddress.street} {disabled}/>
+      <TextField name="city" label={shippingCountry.municipality} bind:value={checkout.shippingAddress.municipality} {disabled}/>
+      <SelectField name="region" label={shippingCountry.region} bind:value={checkout.shippingAddress.region} options={regionOptions} {disabled}/>
+      <SelectField name="country" label="Country" bind:value={checkout.shippingAddress.country} options={countryOptions} {disabled}/>
+      <MaskedField bind:value={checkout.shippingAddress.postalCode} name="zip" label={shippingCountry.postalCode.label} format={shippingCountry.postalCode.format} {disabled}/>
     {/if}
   </Section>
 
   <Section title="Shipping rate">
-    {#each shippingRates as rate}
-    <div>
-      <h3>
-        <label>
-          <input type=radio name="shippingRate" value={rate.id} bind:group={checkout.shippingRateId}/>
-          {rate.carrier} {rate.method} ${rate.amount}
-        </label>
-      </h3>
-      <small>Arrives in {rate.timeframe}</small>
-    </div>
-    {/each}
+    <ShippingRateSelector bind:value={checkout.shippingRateId} rates={shippingRates}/>
   </Section>
 
-  <button disabled={isSubmitting}>
+  <button {disabled}>
     {isSubmitting ? "Submitting..." : "Continue"}
   </button>
 </form>
