@@ -2,10 +2,10 @@
   import {countries} from '@/Api/Geo'
   import {getShippingRates} from '@/Api/Checkout'
   import Section from '@/Components/Section'
-  import {EmailField, CheckboxField} from '@/Components/Fields'
-  import ShippingRateSelector from '@/Components/ShippingRateSelector'
+  import CustomerEntry from '@/Components/CustomerEntry'
   import AddressEntry from '@/Components/AddressEntry'
   import AddressSelector from '@/Components/AddressSelector'
+  import ShippingRateSelector from '@/Components/ShippingRateSelector'
 
   const user = {
     addresses: [
@@ -60,8 +60,7 @@
 
   {#if !user}
     <Section title="Contact Information">
-      <EmailField name="email" label="Email" bind:value={checkout.user.email} {disabled}/>
-      <CheckboxField name="newsletter" label="Send me marketing emails" bind:checked={checkout.user.newsletter} {disabled}/>
+      <CustomerEntry bind:user={checkout.user} {disabled}/>
     </Section>
   {/if}
 
