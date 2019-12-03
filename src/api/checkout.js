@@ -1,3 +1,33 @@
+import {user} from './auth'
+import {countries} from './geography'
+
+export function create() {
+  const shippingRates = getShippingRates()
+  const checkout = {
+    shippingRates,
+    shippingRateId: shippingRates[0].id,
+    shippingAddressId: user ? user.addresses[0].id : null,
+    shippingAddress: {
+      firstName: "",
+      lastName: "",
+      street: "",
+      municipality: "",
+      region: "",
+      country: countries[0].code,
+      postalCode: ""
+    }
+  }
+
+  if (!user) {
+    checkout.user = {
+      email: "",
+      newsletter: false,
+    }
+  }
+
+  return checkout
+}
+
 export function getShippingRates() {
   return [
     {

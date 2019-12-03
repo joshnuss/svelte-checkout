@@ -1,36 +1,14 @@
 <script>
-  import {countries} from '@/api/geography'
   import {user} from '@/api/auth'
-  import {getShippingRates} from '@/api/checkout'
+  import {create as createCheckout} from '@/api/checkout'
   import Section from '@/components/Section'
   import CustomerEntry from '@/components/CustomerEntry'
   import AddressEntry from '@/components/AddressEntry'
   import AddressSelector from '@/components/AddressSelector'
   import ShippingRateSelector from '@/components/ShippingRateSelector'
 
-  const shippingRates = getShippingRates()
-
+  let checkout = createCheckout()
   let isSubmitting = false
-  let checkout = {
-    shippingRateId: shippingRates[0].id,
-    shippingAddressId: user ? user.addresses[0].id : null,
-    shippingAddress: {
-      firstName: "",
-      lastName: "",
-      street: "",
-      municipality: "",
-      region: "",
-      country: countries[0].code,
-      postalCode: ""
-    }
-  }
-
-  if (!user) {
-    checkout.user = {
-      email: "",
-      newsletter: false,
-    }
-  }
 
   $: disabled = isSubmitting
 
@@ -63,7 +41,7 @@
   </Section>
 
   <Section title="Shipping rate">
-    <ShippingRateSelector bind:value={checkout.shippingRateId} rates={shippingRates} {disabled}/>
+    <ShippingRateSelector bind:value={checkout.shippingRateId} rates={checkout.shippingRates} {disabled}/>
   </Section>
 
   <button {disabled}>
