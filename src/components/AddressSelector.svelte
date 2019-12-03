@@ -8,5 +8,5 @@
   </label>
 {/each}
 <label>
-  <input type=radio value={null} bind:group={addressId}/> {newLabel}
+  <input type=radio value={null} bind:group={addressId} {disabled}/> {newLabel}
 </label>

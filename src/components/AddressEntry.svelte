@@ -2,7 +2,7 @@
   import {countries, getCountry} from '@/api/geography'
   import {TextField, SelectField, MaskedField} from './Fields'
 
-  export let address, disabled;
+  export let address, disabled = false;
 
   $: country = getCountry(address.country)
   $: regionOptions = [["", "--Choose--"]].concat(country.regions.map(region => ([region.code, region.name])))
