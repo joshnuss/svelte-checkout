@@ -1,6 +1,6 @@
 <script>
   import Field from './Field'
-  import MaskedInput from './MaskedInput'
+  import MaskedInput from '@/Components/MaskedInput'
 
   export let name, label, value, format, disabled = false
 </script>
