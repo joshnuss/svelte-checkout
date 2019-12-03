@@ -81,7 +81,7 @@
 
   <Section title="Shipping Address">
     {#if user && user.addresses.length > 0}
-      <AddressSelector addresses={user.addresses} bind:addressId={checkout.shippingAddressId} newLabel="Different shipping address"/>
+      <AddressSelector addresses={user.addresses} bind:addressId={checkout.shippingAddressId} newLabel="New shipping address" {disabled}/>
     {/if}
 
     {#if !checkout.shippingAddressId}
@@ -90,7 +90,7 @@
   </Section>
 
   <Section title="Shipping rate">
-    <ShippingRateSelector bind:value={checkout.shippingRateId} rates={shippingRates}/>
+    <ShippingRateSelector bind:value={checkout.shippingRateId} rates={shippingRates} {disabled}/>
   </Section>
 
   <button {disabled}>
