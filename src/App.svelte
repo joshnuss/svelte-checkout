@@ -1,5 +1,6 @@
 <script>
   import {countries, findCountry} from '@/Api/Geo'
+  import {getShippingRates} from '@/Api/Checkout'
   import Section from '@/Components/Section'
   import {EmailField, CheckboxField} from '@/Components/Fields'
   import ShippingRateSelector from '@/Components/ShippingRateSelector'
@@ -19,22 +20,7 @@
     ]
   }
 
-  const shippingRates = [
-    {
-      id: 1212,
-      carrier: "FedEx",
-      method: "Overnight",
-      amount: 59,
-      timeframe: "1-2 days"
-    },
-    {
-      id: 13939,
-      carrier: "USPS",
-      method: "SuperSaver",
-      amount: 5.99,
-      timeframe: "2-3 weeks"
-    }
-  ]
+  const shippingRates = getShippingRates()
 
   let isSubmitting = false
   let checkout = {
