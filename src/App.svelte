@@ -1,5 +1,5 @@
 <script>
-  import {countries} from '@/Api/Geo'
+  import {countries} from '@/Api/Geography'
   import {getShippingRates} from '@/Api/Checkout'
   import Section from '@/Components/Section'
   import CustomerEntry from '@/Components/CustomerEntry'
