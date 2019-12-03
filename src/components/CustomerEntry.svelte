@@ -1,5 +1,5 @@
 <script>
-  import {EmailField, CheckboxField} from '@/Components/Fields'
+  import {EmailField, CheckboxField} from '@/components/Fields'
 
   export let user, disabled = false
 </script>

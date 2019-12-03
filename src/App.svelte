@@ -1,11 +1,11 @@
 <script>
-  import {countries} from '@/Api/Geography'
-  import {getShippingRates} from '@/Api/Checkout'
-  import Section from '@/Components/Section'
-  import CustomerEntry from '@/Components/CustomerEntry'
-  import AddressEntry from '@/Components/AddressEntry'
-  import AddressSelector from '@/Components/AddressSelector'
-  import ShippingRateSelector from '@/Components/ShippingRateSelector'
+  import {countries} from '@/api/geography'
+  import {getShippingRates} from '@/api/checkout'
+  import Section from '@/components/Section'
+  import CustomerEntry from '@/components/CustomerEntry'
+  import AddressEntry from '@/components/AddressEntry'
+  import AddressSelector from '@/components/AddressSelector'
+  import ShippingRateSelector from '@/components/ShippingRateSelector'
 
   const user = {
     addresses: [

@@ -1,5 +1,5 @@
 <script>
-  import {countries, getCountry} from '@/Api/Geography'
+  import {countries, getCountry} from '@/api/geography'
   import {TextField, SelectField, MaskedField} from './Fields'
 
   export let address, disabled;
