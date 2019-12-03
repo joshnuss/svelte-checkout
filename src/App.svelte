@@ -1,5 +1,5 @@
 <script>
-  import {countries, findCountry} from '@/Api/Geo'
+  import {countries} from '@/Api/Geo'
   import {getShippingRates} from '@/Api/Checkout'
   import Section from '@/Components/Section'
   import {EmailField, CheckboxField} from '@/Components/Fields'

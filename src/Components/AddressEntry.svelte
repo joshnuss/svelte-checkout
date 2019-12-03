@@ -1,10 +1,10 @@
 <script>
-  import {countries, findCountry} from '@/Api/Geo'
+  import {countries, getCountry} from '@/Api/Geo'
   import {TextField, SelectField, MaskedField} from './Fields'
 
   export let address, disabled;
 
-  $: country = findCountry(address.country)
+  $: country = getCountry(address.country)
   $: regionOptions = [["", "--Choose--"]].concat(country.regions.map(region => ([region.code, region.name])))
   $: countryOptions = countries.map(country => ([country.code, country.name]))
 </script>
