@@ -38,10 +38,6 @@
 
   let isSubmitting = false
   let checkout = {
-    user: {
-      email: "",
-      newsletter: false,
-    },
     shippingRateId: shippingRates[0].id,
     shippingAddressId: user ? user.addresses[0].id : null,
     shippingAddress: {
@@ -52,6 +48,13 @@
       region: "",
       country: countries[0].code,
       postalCode: ""
+    }
+  }
+
+  if (!user) {
+    checkout.user = {
+      email: "",
+      newsletter: false,
     }
   }
 
