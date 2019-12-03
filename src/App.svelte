@@ -1,5 +1,10 @@
 <script>
+  import { Router, Route } from 'svelte-routing'
   import { Shipping } from '@/pages/checkout'
 </script>
 
-<Shipping/>
+<Router>
+  <main>
+    <Route path="checkout" component={Shipping}/>
+  </main>
+</Router>
