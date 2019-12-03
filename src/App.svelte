@@ -1,24 +1,12 @@
 <script>
   import {countries} from '@/api/geography'
+  import {user} from '@/api/auth'
   import {getShippingRates} from '@/api/checkout'
   import Section from '@/components/Section'
   import CustomerEntry from '@/components/CustomerEntry'
   import AddressEntry from '@/components/AddressEntry'
   import AddressSelector from '@/components/AddressSelector'
   import ShippingRateSelector from '@/components/ShippingRateSelector'
-
-  const user = {
-    addresses: [
-      {
-        id: 123444,
-        street: "1234 Main St",
-        municipality: "Brooklyn",
-        region: "NY",
-        country: "US",
-        postalCode: "11111"
-      }
-    ]
-  }
 
   const shippingRates = getShippingRates()
 
