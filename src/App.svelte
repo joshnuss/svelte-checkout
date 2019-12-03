@@ -73,10 +73,10 @@
   <h1>Checkout</h1>
 
   {#if !user}
-  <Section title="Contact Information">
-    <EmailField name="email" label="Email" bind:value={checkout.user.email} {disabled}/>
-    <CheckboxField name="newsletter" label="Send me marketing emails" bind:checked={checkout.user.newsletter} {disabled}/>
-  </Section>
+    <Section title="Contact Information">
+      <EmailField name="email" label="Email" bind:value={checkout.user.email} {disabled}/>
+      <CheckboxField name="newsletter" label="Send me marketing emails" bind:checked={checkout.user.newsletter} {disabled}/>
+    </Section>
   {/if}
 
   <Section title="Shipping Address">
@@ -98,6 +98,6 @@
   </button>
 </form>
 
-<pre>
-  {JSON.stringify(checkout, null, 2)}
-</pre>
+  <pre>
+    {JSON.stringify(checkout, null, 2)}
+  </pre>
