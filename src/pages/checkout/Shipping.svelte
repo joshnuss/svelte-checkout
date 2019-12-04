@@ -1,4 +1,5 @@
 <script>
+  import {navigate} from 'svelte-routing'
   import {user} from '@/api/auth'
   import {create as createCheckout} from '@/api/checkout'
   import Section from '@/components/Section'
@@ -17,7 +18,10 @@
 
     console.log(checkout)
 
-    setTimeout(() => isSubmitting = false, 3000)
+    setTimeout(() => {
+      isSubmitting = false
+      navigate("/checkout/payment")
+    }, 3000)
   }
 </script>
 
