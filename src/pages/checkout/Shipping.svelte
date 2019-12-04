@@ -22,8 +22,6 @@
 </script>
 
 <form on:submit|preventDefault={handleSubmit}>
-  <h1>Checkout</h1>
-
   {#if !user}
     <Section title="Contact Information">
       <CustomerEntry bind:user={checkout.user} {disabled}/>
