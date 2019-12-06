@@ -15,9 +15,9 @@
   }
 </script>
 <form on:submit|preventDefault={handleSubmit}>
-  <h2>Payment</h2>
+  <h2>Confirmation</h2>
 
   <button {disabled}>
-    {isSubmitting ? "Submitting..." : "Continue"}
+    {isSubmitting ? "Processing..." : "Complete Purchase"}
   </button>
 </form>
