@@ -1482,10 +1482,10 @@ svelte-routing@^1.4.0:
   resolved "https://registry.yarnpkg.com/svelte-routing/-/svelte-routing-1.4.0.tgz#09285f3c7b19f509dfb1289fbc1235b348aa7d80"
   integrity sha512-09ypn0/vD2PcuyZEEocUHFgi7kvLOxSoUUuJZ4j3p4Y4sT/kMIWtHIRpnLdsr8bQ+sGo77sbEkO+av6yd1RjPg==
 
-svelte@^3.0.0:
-  version "3.16.3"
-  resolved "https://registry.yarnpkg.com/svelte/-/svelte-3.16.3.tgz#161bc390eb93b2fe26e4f65b9cc3c62446b02f31"
-  integrity sha512-6TQVFj9+rW3FxbIng00KN101VAFo7Kh6wwYG/nsM8r+QqAm1SmMFkORvSESxAIjkqj8PPSqwzVlrlmTMug4Irg==
+svelte@^3.49.0:
+  version "3.49.0"
+  resolved "https://registry.yarnpkg.com/svelte/-/svelte-3.49.0.tgz#5baee3c672306de1070c3b7888fc2204e36a4029"
+  integrity sha512-+lmjic1pApJWDfPCpUUTc1m8azDqYCG1JN9YEngrx/hUyIcFJo6VZhj0A1Ai0wqoHcEIuQy+e9tk+4uDgdtsFA==
 
 tar@^4:
   version "4.4.13"
